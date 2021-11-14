@@ -1,0 +1,17 @@
+{
+    "name": "hw6",
+    "version-string": "0.0.1",
+    "dependencies": [
+            {
+                "name": "openimageio",
+                "version>=": "2.2.10.0"
+            }
+    ],
+    "overrides": [
+        {
+            "name": "openimageio",
+            "version": "2.2.10.0"
+        }
+    ],
+    "builtin-baseline": "5568f110b509a9fd90711978a7cb76bae75bb092"
+}
