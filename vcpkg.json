@@ -2,16 +2,18 @@
     "name": "hw6",
     "version-string": "0.0.1",
     "dependencies": [
-            {
-                "name": "openimageio",
-                "version>=": "2.2.10.0"
-            }
+      {
+        "name": "opencv4",
+        "version>=": "4.5.0",
+        "features": [ "jpeg", "png" ]
+      }
     ],
     "overrides": [
-        {
-            "name": "openimageio",
-            "version": "2.2.10.0"
-        }
+      {
+        "name": "opencv4",
+        "version": "4.5.1",
+        "port-version": 1
+      }
     ],
     "builtin-baseline": "5568f110b509a9fd90711978a7cb76bae75bb092"
 }
