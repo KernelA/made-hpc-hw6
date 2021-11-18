@@ -9,21 +9,29 @@
 
 [Результаты](image/conv.md)
 
-## Requirements
+## Требования для запуска
 
 1. CMake 3.20 or higher.
 2. Compiler with support C++17.
-
-## How to run
-
-Create new directory `build`.
+3. CUDA 10.1 или выше.
 
 ```
-mkdir build
-cmake -S . -B .\build
+git submodule update --init --recursive
+```
+
+## Как запустить
+
+```
+cmake --list-presets
+```
+
+Выбрать preset из списка.
+
+```
+cmake --preset <preset_name>
 ```
 
 Run CMake:
 ```
-cmake --build .\build --config Release -j 4 --target <input_target>
+cmake --build ./build --config Release -j 4 --target all
 ```
