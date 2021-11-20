@@ -1,6 +1,6 @@
 #include <median_filter.h>
 
-void median::median_filter(const utils::Byte * input_image, std::vector<utils::Byte> & output_image, size_t width, size_t height, size_t num_c, size_t window_size)
+void median::median_filter(const utils::Byte *input_image, std::vector<utils::Byte> &output_image, size_t width, size_t height, size_t num_c, size_t window_size)
 {
     using utils::Byte;
 
@@ -18,10 +18,9 @@ void median::median_filter(const utils::Byte * input_image, std::vector<utils::B
 
     utils::check_and_print_error(error);
 
-
     utils::check_and_print_error(error);
 
-    gpu::median_filter<< <dim3(num_width_blocks, num_height_blocks), dim3(THREAD_PER_BLOCK, THREAD_PER_BLOCK, num_c), THREAD_PER_BLOCK * THREAD_PER_BLOCK * sizeof(Byte) * window_size * window_size * num_c>> > (device_image_buffer.get(), device_image_out_buffer.get(), width, height, num_c, window_size);
+    gpu::median_filter<<<dim3(num_width_blocks, num_height_blocks), dim3(THREAD_PER_BLOCK, THREAD_PER_BLOCK, num_c), THREAD_PER_BLOCK * THREAD_PER_BLOCK * sizeof(Byte) * window_size * window_size * num_c>>>(device_image_buffer.get(), device_image_out_buffer.get(), width, height, num_c, window_size);
 
     error = cudaPeekAtLastError();
 

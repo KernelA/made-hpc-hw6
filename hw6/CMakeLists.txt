@@ -6,7 +6,7 @@ set(_include_dir ${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB_RECURSE _headers RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} ${_include_dir}/*.h*)
 
 
-SET(test_projects "conv;median_filter")
+SET(test_projects "conv;median_filter;hist")
 
 foreach(test_project ${test_projects})
     add_executable(${test_project} ${_headers}
@@ -14,9 +14,12 @@ foreach(test_project ${test_projects})
         ${CMAKE_CURRENT_SOURCE_DIR}/src/conv_kernel.cu
         ${CMAKE_CURRENT_SOURCE_DIR}/src/conv.cu
         ${CMAKE_CURRENT_SOURCE_DIR}/src/utils.cpp
-         ${CMAKE_CURRENT_SOURCE_DIR}/src/median_filter.cu
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/median_filter.cu
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/hist_kernel.cu
         ${CMAKE_CURRENT_SOURCE_DIR}/src/median_filter_kernel.cu
-    )
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/hist.cu)
+
+    set_property(TARGET ${test_project} PROPERTY CUDA_ARCHITECTURES 61)
 
     target_compile_features(${test_project} PRIVATE cxx_std_17)
     target_include_directories(${test_project} PRIVATE ${_include_dir})

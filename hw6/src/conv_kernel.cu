@@ -1,6 +1,6 @@
 #include <conv_kernel.h>
 
-__global__ void gpu::conv2d_kernel(const float * input_image, float * output_image, size_t image_width, size_t image_height, size_t num_c, const float * kernel, float normalization, size_t kernel_size)
+__global__ void gpu::conv2d_kernel(const float *input_image, float *output_image, size_t image_width, size_t image_height, size_t num_c, const float *kernel, float normalization, size_t kernel_size)
 {
 	int row = threadIdx.y + blockIdx.y * blockDim.y;
 	int column = threadIdx.x + blockIdx.x * blockDim.x;

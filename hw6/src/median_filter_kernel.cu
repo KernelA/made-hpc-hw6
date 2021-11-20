@@ -1,8 +1,6 @@
 #include <median_filter_kernel.h>
-#include <stdio.h>
 
-
-__device__ void gpu::insert_sort(utils::Byte * array_buffer, size_t size)
+__device__ void gpu::insert_sort(utils::Byte *array_buffer, size_t size)
 {
 	for (size_t i = 1; i < size; ++i)
 	{
@@ -18,7 +16,7 @@ __device__ void gpu::insert_sort(utils::Byte * array_buffer, size_t size)
 	}
 }
 
-__global__ void gpu::median_filter(const utils::Byte * input_image, utils::Byte * output_image, size_t image_width, size_t image_height, size_t num_c, size_t window_size)
+__global__ void gpu::median_filter(const utils::Byte *input_image, utils::Byte *output_image, size_t image_width, size_t image_height, size_t num_c, size_t window_size)
 {
 	int row = threadIdx.y + blockIdx.y * blockDim.y;
 	int column = threadIdx.x + blockIdx.x * blockDim.x;
@@ -36,10 +34,7 @@ __global__ void gpu::median_filter(const utils::Byte * input_image, utils::Byte 
 	{
 		int index = column * num_c + row * image_width * num_c + channel;
 
-		if (column < image_width - half_window_size
-			&& column >= half_window_size
-			&& row >= half_window_size
-			&& row < image_height - half_window_size)
+		if (column < image_width - half_window_size && column >= half_window_size && row >= half_window_size && row < image_height - half_window_size)
 		{
 
 			for (int kernelRow = 0; kernelRow < window_size; kernelRow++)
@@ -66,6 +61,4 @@ __global__ void gpu::median_filter(const utils::Byte * input_image, utils::Byte 
 			output_image[index] = input_image[index];
 		}
 	}
-
-	
 }

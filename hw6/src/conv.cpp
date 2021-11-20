@@ -1,14 +1,12 @@
 #include <stdafx.h>
 #include <conv.h>
 
-
-
-int main(int argc, char ** argv)
+int main(int argc, char **argv)
 {
+    using std::cerr;
     using std::cin;
     using std::cout;
     using std::endl;
-    using std::cerr;
     using std::vector;
 
     if (argc < 3)
@@ -21,14 +19,14 @@ int main(int argc, char ** argv)
 
     float normalization{};
 
-    for (size_t i{ 2 }; i < argc; i++)
+    for (size_t i{2}; i < argc; i++)
     {
         float value = std::stof(argv[i]);
         normalization += value;
         kernel_values.push_back(value);
     }
 
-    size_t kernel_size{ 1 };
+    size_t kernel_size{1};
 
     while (kernel_size * kernel_size != kernel_values.size() && kernel_size * kernel_size < kernel_values.size())
     {
@@ -84,7 +82,6 @@ int main(int argc, char ** argv)
     {
         cerr << "Cannot save image" << endl;
     }
-
 
     return 0;
 }
